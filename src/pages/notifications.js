@@ -11,28 +11,45 @@ const Container = styled.div`
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   margin-bottom: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   background: linear-gradient(to right, #2563eb, #9333ea);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const NewMessageButton = styled(Link)`
+  margin-top: 1rem;
   padding: 0.5rem 1rem;
   background: linear-gradient(to right, #3b82f6, #9333ea);
   color: white;
   border-radius: 9999px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease;
+
   &:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    margin-top: 0;
   }
 `;
 
@@ -49,11 +66,13 @@ const CategoryButton = styled.button`
   border-radius: 9999px;
   white-space: nowrap;
   transition: background-color 0.3s ease, color 0.3s ease;
+
   &.active {
     background: linear-gradient(to right, #3b82f6, #9333ea);
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
   &.inactive {
     background: white;
     color: #6b7280;
@@ -62,23 +81,35 @@ const CategoryButton = styled.button`
 
 const MessageCard = styled(Link)`
   display: flex;
+  flex-direction: column;
   padding: 1rem;
   border-bottom: 1px solid #e5e7eb;
   transition: background-color 0.3s ease;
+
   &.unread {
     background-color: #e0f2fe;
   }
+
   &.read {
     background-color: white;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
   }
 `;
 
 const MessageAvatar = styled.div`
   font-size: 2rem;
-  margin-right: 1rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
   background: linear-gradient(to right, #93c5fd, #a78bfa);
   border-radius: 9999px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
 `;
 
 const MessageDetails = styled.div`
@@ -86,15 +117,23 @@ const MessageDetails = styled.div`
 `;
 
 const MessageTitle = styled.h3`
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: bold;
   color: ${props => (props.read ? '#6b7280' : '#2563eb')};
+
+  @media (min-width: 768px) {
+    font-size: 1.125rem;
+  }
 `;
 
 const MessageSubject = styled.h4`
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #6b7280;
   margin-bottom: 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const MessagePreview = styled.p`
@@ -126,8 +165,15 @@ const EmptyState = styled.div`
 
 const BottomNavigation = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 1.5rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const BottomButton = styled.button`
@@ -137,8 +183,14 @@ const BottomButton = styled.button`
   color: #6b7280;
   border-radius: 0.5rem;
   transition: background-color 0.3s ease;
+  margin-bottom: 0.5rem;
+
   &:hover {
     background-color: #f3f4f6;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
   }
 `;
 
