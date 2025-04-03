@@ -8,7 +8,7 @@ const sampleVideos = [
     },
     { 
       title: "Counting 1-10 with Animals", 
-      link: "https://www.example.com/video2",
+      link: "https://youtu.be/Yt8GFgxlITs?list=RDYt8GFgxlITs",
       thumbnail: "🐘",
       color: "linear-gradient(to right, #60a5fa, #a78bfa)",
       category: "Math"
