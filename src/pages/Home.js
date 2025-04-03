@@ -150,6 +150,16 @@ const Home = () => {
         featureIcon: {
             marginRight: '12px',
             fontSize: '1.5rem'
+        },
+        footer: {
+            marginTop: '40px',
+            textAlign: 'center',
+            padding: '1rem',
+            backgroundColor: '#3b82f6',
+            color: 'white',
+            fontSize: '1rem',
+            fontWeight: 'bold',
+            borderRadius: '8px'
         }
     };
 
@@ -221,6 +231,9 @@ const Home = () => {
                         <div style={{ ...styles.icon, background: "#3b82f6" }}>📈</div>
                     </div>
                 </div>
+                <footer style={styles.footer}>
+                    Group-Of-EDF-Media-2025-App
+                </footer>
             </div>
         </>
     );
