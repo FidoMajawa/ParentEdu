@@ -1,170 +1,87 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #eff6ff, #f3e8ff);
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Wrapper = styled.div`
-  width: 100%;
-  max-width: 1024px;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  background: white;
-`;
-
-const Header = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-`;
-
-const Title = styled.h1`
-  font-size: 1.75rem;
-  font-weight: bold;
-  background: linear-gradient(to right, #2563eb, #9333ea);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-`;
-
-const NewMessageButton = styled(Link)`
-  padding: 0.5rem 1rem;
-  background: linear-gradient(to right, #3b82f6, #9333ea);
-  color: white;
-  border-radius: 9999px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s ease;
-
-  &:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  }
-`;
-
-const CategoriesContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-  gap: 1rem;
-  scrollbar-width: none;
-`;
-
-const CategoryButton = styled.button`
-  flex-shrink: 0;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  white-space: nowrap;
-  transition: all 0.3s ease;
-  background: ${({ active }) => (active ? 'linear-gradient(to right, #3b82f6, #9333ea)' : 'white')};
-  color: ${({ active }) => (active ? 'white' : '#6b7280')};
-  box-shadow: ${({ active }) => (active ? '0 4px 8px rgba(0, 0, 0, 0.2)' : 'none')};
-`;
-
-const MessageList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const MessageCard = styled(Link)`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  border-bottom: 1px solid #e5e7eb;
-  background-color: ${({ read }) => (read ? 'white' : '#e0f2fe')};
-  transition: background-color 0.3s ease;
-  border-radius: 8px;
-`;
-
-const MessageAvatar = styled.div`
-  font-size: 2rem;
-  padding: 0.5rem;
-  background: linear-gradient(to right, #93c5fd, #a78bfa);
-  border-radius: 9999px;
-`;
-
-const MessageDetails = styled.div`
-  flex: 1;
-`;
-
-const EmptyState = styled.div`
-  text-align: center;
-  padding: 2rem;
-  font-size: 1rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-`;
+import { useState } from 'react';
 
 const Messages = () => {
   const messages = [
-    { id: 1, sender: "Teacher Sarah", avatar: "👩🏫", subject: "Math Progress Update", preview: "Your child is doing great...", time: "2h ago", read: false, category: "academic" },
-    { id: 2, sender: "School Principal", avatar: "👨‍🏫", subject: "Meeting Reminder", preview: "Don't forget the meeting...", time: "1d ago", read: true, category: "administrative" },
+    { id: 1, sender: "Teacher Sarah", avatar: "👩🏫", subject: "Math Progress Update", preview: "Your child is doing great with addition! We're moving on to subtraction next week...", time: "2 hours ago", read: false, category: "academic" },
+    { id: 2, sender: "School Principal", avatar: "👨‍🏫", subject: "Parent-Teacher Meeting", preview: "We'd like to schedule our quarterly parent-teacher meeting for...", time: "1 day ago", read: true, category: "administrative" },
+    { id: 3, sender: "Art Teacher", avatar: "🎨", subject: "Art Project Update", preview: "Your child created a wonderful painting today! It will be displayed...", time: "3 days ago", read: true, category: "creative" },
+    { id: 4, sender: "PE Teacher", avatar: "🏃‍♂️", subject: "Sports Day Reminder", preview: "Don't forget about our annual sports day coming up next Friday...", time: "5 days ago", read: false, category: "event" }
   ];
 
   const categories = [
-    { id: "all", name: "All" },
+    { id: "all", name: "All Messages" },
     { id: "academic", name: "Academic" },
     { id: "administrative", name: "Administrative" },
+    { id: "creative", name: "Creative" },
+    { id: "event", name: "Events" }
   ];
 
   const [activeCategory, setActiveCategory] = useState("all");
 
   return (
-    <Container>
-      <Wrapper>
-        <Header>
-          <Title>Messages</Title>
-          <NewMessageButton to="/compose">✏️ New Message</NewMessageButton>
-        </Header>
+    <div style={styles.container}>
+      <div style={styles.header}>
+        <h1 style={styles.title}>Messages</h1>
+        <p style={styles.subtitle}>Communications from teachers and school</p>
+        <Link to="/compose" style={styles.newMessage}>✏️ New Message</Link>
+      </div>
 
-        <CategoriesContainer>
-          {categories.map((category) => (
-            <CategoryButton key={category.id} onClick={() => setActiveCategory(category.id)} active={activeCategory === category.id}>
-              {category.name}
-            </CategoryButton>
-          ))}
-        </CategoriesContainer>
+      <div style={styles.categories}>
+        {categories.map(category => (
+          <button
+            key={category.id}
+            onClick={() => setActiveCategory(category.id)}
+            style={activeCategory === category.id ? styles.activeCategory : styles.category}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
 
-        <MessageList>
-          {messages.filter(msg => activeCategory === "all" || msg.category === activeCategory).length > 0 ? (
-            messages
-              .filter(msg => activeCategory === "all" || msg.category === activeCategory)
-              .map((message) => (
-                <MessageCard to={`/messages/${message.id}`} key={message.id} read={message.read}>
-                  <MessageAvatar>{message.avatar}</MessageAvatar>
-                  <MessageDetails>
-                    <h3 style={{ fontWeight: 'bold', color: message.read ? '#6b7280' : '#2563eb' }}>{message.sender}</h3>
-                    <p style={{ color: '#6b7280' }}>{message.subject}</p>
-                    <small style={{ color: '#6b7280' }}>{message.time}</small>
-                  </MessageDetails>
-                </MessageCard>
-              ))
-          ) : (
-            <EmptyState>
-              📭 No messages found
-            </EmptyState>
-          )}
-        </MessageList>
-      </Wrapper>
-    </Container>
+      <div style={styles.messagesList}>
+        {messages.filter(msg => activeCategory === "all" || msg.category === activeCategory).map(message => (
+          <Link to={`/messages/${message.id}`} key={message.id} style={{ ...styles.messageItem, backgroundColor: message.read ? '#fff' : '#f0f8ff' }}>
+            <div style={styles.avatar}>{message.avatar}</div>
+            <div style={styles.messageContent}>
+              <div style={styles.messageHeader}>
+                <h3>{message.sender}</h3>
+                <span>{message.time}</span>
+              </div>
+              <h4>{message.subject}</h4>
+              <p>{message.preview}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {messages.filter(msg => activeCategory === "all" || msg.category === activeCategory).length === 0 && (
+        <div style={styles.emptyState}>
+          <div style={styles.emptyIcon}>📭</div>
+          <h3>No messages found</h3>
+          <p>You don't have any messages in this category</p>
+        </div>
+      )}
+    </div>
   );
+};
+
+const styles = {
+  container: { width: '90%', maxWidth: '800px', margin: '0 auto', padding: '20px', fontFamily: 'Arial, sans-serif' },
+  header: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' },
+  title: { fontSize: '24px', color: '#333' },
+  subtitle: { color: '#555' },
+  newMessage: { padding: '8px 16px', background: 'linear-gradient(to right, #007bff, #6f42c1)', color: 'white', textDecoration: 'none', borderRadius: '5px' },
+  categories: { display: 'flex', overflowX: 'auto', gap: '10px', marginBottom: '15px' },
+  category: { padding: '8px 16px', border: 'none', background: '#eee', borderRadius: '20px', cursor: 'pointer' },
+  activeCategory: { padding: '8px 16px', border: 'none', background: '#007bff', color: 'white', borderRadius: '20px', cursor: 'pointer' },
+  messagesList: { background: 'white', borderRadius: '10px', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)' },
+  messageItem: { display: 'flex', padding: '15px', borderBottom: '1px solid #ddd', textDecoration: 'none', color: '#333' },
+  avatar: { fontSize: '24px', marginRight: '15px' },
+  messageContent: { flex: 1 },
+  messageHeader: { display: 'flex', justifyContent: 'space-between' },
+  emptyState: { textAlign: 'center', padding: '20px' },
+  emptyIcon: { fontSize: '40px', marginBottom: '10px' }
 };
 
 export default Messages;

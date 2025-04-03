@@ -5,7 +5,7 @@ import Videos from "./pages/Videos";
 import Feedback from "./pages/Feedback";
 import Activities from "./pages/Activities";
 import MainPage from "./pages/mainpage"; 
-import Messages from "./pages/notifications";
+import Notifications from "./pages/notifications";
 import Compose from "./pages/compose";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/mainpage" element={<MainPage />} />
-        <Route path="/messages" element={<Messages />} />
+        <Route path="/notifications" element={<Notifications />} />
         <Route path="/compose" element={<Compose />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/feedback" element={<Feedback />} />
