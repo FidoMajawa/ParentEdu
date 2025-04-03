@@ -1,7 +1,7 @@
 const sampleVideos = [
     { 
       title: "Phonics Fun Adventure", 
-      link: "https://www.example.com/video1",
+      link: "https://youtu.be/yN8IHiz1j-s",
       thumbnail: "🔤",
       color: "linear-gradient(to right, #facc15, #fb923c)",
       category: "Reading"

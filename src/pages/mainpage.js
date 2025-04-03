@@ -14,7 +14,7 @@ const Dashboard = () => {
       label: "New Messages", 
       icon: "✉️", 
       color: { backgroundColor: '#DBEAFE', color: '#1E40AF' },
-      path: "/messages"
+      path: "/notifications"
     },
     { 
       value: 5, 
