@@ -14,15 +14,15 @@ const sampleVideos = [
       category: "Math"
     },
     { 
-      title: "Science Magic Experiments", 
-      link: "https://www.example.com/video3",
+      title: "Science Experiments for Kids", 
+      link: "https://youtu.be/hGwG--GZEfw",
       thumbnail: "🧪",
       color: "linear-gradient(to right, #34d399, #2dd4bf)",
       category: "Science"
     },
     { 
       title: "Art & Creativity Time", 
-      link: "https://www.example.com/video4",
+      link: "https://youtu.be/ws6BR741ios",
       thumbnail: "🎨",
       color: "linear-gradient(to right, #f472b6, #ef4444)",
       category: "Art"
